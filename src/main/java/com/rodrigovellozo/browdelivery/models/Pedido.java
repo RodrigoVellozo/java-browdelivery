@@ -17,7 +17,7 @@ import jakarta.persistence.CascadeType;
 @Entity
 public class Pedido {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(optional = true)
@@ -31,5 +31,55 @@ public class Pedido {
 
     @Min(1)
     private Double valorTotal;
-    
+
+    public Pedido() {
+    }
+
+    public Pedido(Long id, Cliente cliente, List<Item> itens, Double valorTotal) {
+        this.id = id;
+        this.cliente = cliente;
+        this.itens = itens;
+        this.valorTotal = valorTotal;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public List<Item> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<Item> itens) {
+        this.itens = itens;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public Double getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(Double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
 }
