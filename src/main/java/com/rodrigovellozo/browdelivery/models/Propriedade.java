@@ -1,16 +1,12 @@
 package com.rodrigovellozo.browdelivery.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Propriedade {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
     private String name;
     private String value;
     private String description;
@@ -30,18 +26,11 @@ public class Propriedade {
 
     @Override
     public String toString() {
-        return "Propriedade [id=" + id + ", name=" + name + ", value=" + value + ", description=" + description
+        return "Propriedade [id=" + "sem id" + ", name=" + name + ", value=" + value + ", description=" + description
                 + ", category="
                 + category + ", subcategory=" + subcategory + "]";
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
