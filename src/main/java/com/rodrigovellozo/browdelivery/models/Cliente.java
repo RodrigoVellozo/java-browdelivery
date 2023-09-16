@@ -1,6 +1,9 @@
 package com.rodrigovellozo.browdelivery.models;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -12,14 +15,17 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 
 @Entity
-public class Cliente {
-
+@Table(name = "clientes")
+public class Cliente implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
     @NotNull
     @Length(min = 2, max = 30, message = "O nome deve ter entre {min} e 30 {max}")
@@ -37,7 +43,7 @@ public class Cliente {
     }
 
     public Cliente(
-            Long id,
+            UUID id,
             String name,
             String endereco
             ) {
@@ -46,11 +52,11 @@ public class Cliente {
         this.endereco = endereco;   
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -79,7 +85,8 @@ public class Cliente {
     }
 
     public void novoPedido(Pedido pedido) {
-        this.pedidos.add(pedido);
-    }
+		if (this.pedidos==null) pedidos = new ArrayList<>();
+		pedidos.add(pedido);
+	}
 
 }

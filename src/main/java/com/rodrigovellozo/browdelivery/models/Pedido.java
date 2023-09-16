@@ -1,7 +1,10 @@
 package com.rodrigovellozo.browdelivery.models;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -10,15 +13,19 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.CascadeType;
 
 @Entity
-public class Pedido {
+@Table(name="pedidos")
+public class Pedido implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
     @ManyToOne(optional = true)
     private Cliente cliente;
@@ -30,23 +37,24 @@ public class Pedido {
     private Date data;
 
     @Min(1)
-    private Double valorTotal;
+    private BigDecimal valorTotal;
 
     public Pedido() {
     }
 
-    public Pedido(Long id, Cliente cliente, List<Item> itens, Double valorTotal) {
+    public Pedido(UUID id, Cliente cliente, List<Item> itens, BigDecimal valorTotal) {
         this.id = id;
         this.cliente = cliente;
         this.itens = itens;
         this.valorTotal = valorTotal;
+        this.data = new Date();
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -74,11 +82,11 @@ public class Pedido {
         this.data = data;
     }
 
-    public Double getValorTotal() {
+    public BigDecimal getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(Double valorTotal) {
+    public void setValorTotal(BigDecimal valorTotal) {
         this.valorTotal = valorTotal;
     }
 

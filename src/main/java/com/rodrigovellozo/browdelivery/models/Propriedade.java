@@ -1,11 +1,16 @@
 package com.rodrigovellozo.browdelivery.models;
 
+import java.io.Serializable;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
-public class Propriedade {
-
+@Table(name="propriedade")
+public class Propriedade implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     @Id
     private String name;
     private String value;

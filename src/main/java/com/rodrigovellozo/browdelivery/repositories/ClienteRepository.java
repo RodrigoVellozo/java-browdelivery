@@ -1,11 +1,13 @@
 package com.rodrigovellozo.browdelivery.repositories;
 
-import com.rodrigovellozo.browdelivery.models.Cliente;
+import java.util.UUID;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface ClienteRepository extends CrudRepository<Cliente, Long> {
+import com.rodrigovellozo.browdelivery.models.Cliente;
+
+@Repository // @Repository is not needed if you extend JpaRepository
+public interface ClienteRepository extends JpaRepository<Cliente, UUID> {
   
 }
