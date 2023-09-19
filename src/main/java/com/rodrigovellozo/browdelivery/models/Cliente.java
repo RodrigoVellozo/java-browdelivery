@@ -28,11 +28,11 @@ public class Cliente implements Serializable {
     private UUID id;
 
     @NotNull
-    @Length(min = 2, max = 30, message = "O nome deve ter entre {min} e 30 {max}")
+    @Length(min = 2, max = 30, message = "O nome deve ter entre 2 e 30 caracteres")
     private String name;
 
     @NotNull
-    @Length(min = 2, max = 300, message = "O endereço deve ter entre {min} e 30 {max}")
+    @Length(min = 2, max = 300, message = "O endereço deve ter entre 2 e 300 caracteres")
     private String endereco;
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)

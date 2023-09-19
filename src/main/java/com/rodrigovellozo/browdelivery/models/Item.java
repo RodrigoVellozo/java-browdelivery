@@ -24,7 +24,7 @@ public class Item implements Serializable {
     private UUID id;
 
     @NotNull
-    @Length(min=2, max=30, message="O nome deve ter entre {min} e 30 {max}")
+    @Length(min=2, max=70, message="O nome deve ter entre 2 e 70 caracteres ")
     private String nome;
 
     @NotNull
